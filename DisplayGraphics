@@ -1,52 +1,75 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.main;
 
 import java.awt.*;
 import javax.swing.*;
 // Create a constructor method
-public class Main extends JPanel{
-    public Main(){
+public class Main extends JPanel {
+    public Main() {
         super();
     }
     /* Create a paintComponent() method to override the one in
-    JPanel.This is where the drawing happens. We don't have
+    JPanel. This is where the drawing happens. We don't have
     to call it in our program, it gets called automatically
     whenever the panel needs to be redrawn, like when it is
     made visible or moved or whatever.
     */
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); // Ensures the panel is properly rendered
 
-    /**
-     *
-     * @param g
-     */
-    public void paintComponent(Graphics g){
-        g.drawLine(10,150,150,10); // Draw a line from (10,10) to (150,150)
-        g.drawRect(50, 50, 40, 40);
-        g.drawRect(60, 80, 225, 30);
-        g.setColor(Color.red);
-        g.drawOval(20, -50, 300, 300);
-        g.drawLine(35, 60, 100, 120);
-        g.fillRoundRect(12, 120, 12, 120, 12, 12);
-        g.fillOval(20, -50, 100, 100);
-        g.draw3DRect(60, 30, 225, 80, true);
-        g.setColor(Color.blue);
-        g.drawString("Out of all the clutter, find simplicity", 100, 70);
-        g.drawString("-- Colin McPhail", 130, 100);
+        // Draw pizza crust (large circle)
+        g.setColor(new Color(210, 180, 140)); // Light brown for crust
+        g.fillOval(50, 50, 300, 300); // Main pizza crust
+
+        // Draw pizza sauce layer (smaller circle)
+        g.setColor(new Color(255, 99, 71)); // Tomato sauce color
+        g.fillOval(70, 70, 260, 260);
+
+        // Draw cheese layer
+        g.setColor(new Color(255, 223, 0)); // Yellow for cheese
+        g.fillOval(80, 80, 240, 240);
+
+        // Draw pepperoni slices (red circles)
+        g.setColor(Color.RED);
+        g.fillOval(120, 120, 40, 40);
+        g.fillOval(200, 150, 40, 40);
+        g.fillOval(150, 200, 40, 40);
+        g.fillOval(230, 220, 40, 40);
+
+        // Draw black olives (black circles)
+        g.setColor(Color.BLACK);
+        g.fillOval(180, 120, 15, 15);
+        g.fillOval(220, 190, 15, 15);
+        g.fillOval(120, 220, 15, 15);
+        g.fillOval(250, 140, 15, 15);
+
+        // Draw green pepper slices (green ovals)
+        g.setColor(Color.GREEN);
+        g.drawOval(140, 140, 30, 15);
+        g.drawOval(190, 180, 30, 15);
+        g.drawOval(220, 100, 30, 15);
+
+        // Draw mushrooms (simple arcs)
+        g.setColor(new Color(139, 69, 19)); // Brown color for mushrooms
+        g.fillArc(160, 160, 30, 20, 0, 180);
+        g.fillArc(100, 190, 30, 20, 0, 180);
+        g.fillArc(230, 170, 30, 20, 0, 180);
+
+        // Draw the quote on the pizza
+        g.setColor(Color.RED);
+        g.drawString("yum!", 90, 10);
+        g.drawString("-Colin McPhail", 130, 20);
     }
 
-    public static void main(String arg[]){
-        JFrame frame = new JFrame("BasicJPanel");
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Pizza Drawing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400,300);
-// Create a new identifier for a BasicJPanel called "panel",
-// then create a new BasicJPanel object for it to refer to.
+        frame.setSize(400, 400);
+        // Create a new identifier for a Main JPanel called "panel",
+        // then create a new Main JPanel object for it to refer to.
         Main panel = new Main();
-// Make the panel object the content pane of the JFrame.
-// This puts it into the drawable area of frame, and now
-// we do all our drawing to panel, using paintComponent(), above.
+        // Make the panel object the content pane of the JFrame.
+        // This puts it into the drawable area of the frame, and now
+        // we do all our drawing to panel, using paintComponent(), above.
         frame.setContentPane(panel);
         frame.setVisible(true);
     }
