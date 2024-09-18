@@ -11,13 +11,30 @@ package com.mycompany.messingwithstrings;
 public class MessingWithStrings {
 
     public static void main(String[] args) {
+        //Creates new string object called "Colin McPhail" 
         String strHW = new String ("Colin McPhail");
+        
+        //Prints my name in qoutes
         System.out.println("My name is \"" + strHW + "\"");
+        
+        //prints the length of my name
         System.out.println("My name lenth is \"" + strHW.length()+"\"");
+        
+        //prints my name in uppercase
         System.out.println("My name in upper case is \"" + strHW.toUpperCase()+ "\"");
+        
+        //prints my name in lowercase
         System.out.println("My name in lower case is \"" + strHW.toLowerCase() + "\"");
+        
+        //prins the firt letter of my name
+           int length=strHW.length();
         System.out.println("The first letter of my name is \"" + strHW.charAt(0) + "\"");
-        System.out.println("The last letter of my name is \"" + strHW.charAt(12) + "\"");   
+        
+        //prins the last letter of my name
+     
+        System.out.println("The last letter of my name is \"" + strHW.charAt(length-1) + "\"");   
+        
+        //prints the index of the space in my name
         System.out.println("The index of the space between the names is \"" + strHW.indexOf(" ") + "\"");    
         }
 }
