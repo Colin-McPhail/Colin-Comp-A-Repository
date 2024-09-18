@@ -1,0 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.messingwithstrings;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class MessingWithStrings {
+
+    public static void main(String[] args) {
+        String strHW = new String ("Colin McPhail");
+        System.out.println("My name is \"" + strHW + "\"");
+        System.out.println("My name lenth is \"" + strHW.length()+"\"");
+        System.out.println("My name in upper case is \"" + strHW.toUpperCase()+ "\"");
+        System.out.println("My name in lower case is \"" + strHW.toLowerCase() + "\"");
+        System.out.println("The first letter of my name is \"" + strHW.charAt(0) + "\"");
+        System.out.println("The last letter of my name is \"" + strHW.charAt(12) + "\"");   
+        System.out.println("The index of the space between the names is \"" + strHW.indexOf(" ") + "\"");    
+        }
+}
