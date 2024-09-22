@@ -1,0 +1,59 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.randomnumbers;
+
+import java.io.IOException;
+import java.util.Random;
+
+/**
+ *
+ * @author Colin McPhail
+ */
+public class RandomNumbers {
+
+    public static void main(String[] args) {
+
+        char letter;
+
+        try {
+            // Infinite loop to print new Phone number when P is pressed
+            while (true) {
+                System.out.println("Press 'P' to print New number, press any other key to exit");
+
+                // Wait for user to press a key
+                letter = (char) System.in.read();
+
+                // If 'P' or 'p' is pressed, print Phone number
+                if (letter == 'P' || letter == 'p') {
+                    int num1; //First digit
+                    int num2; //Second digit
+                    int num3; //Third digit
+                    int tprefix; //2nd portion
+                    int lnum; //Third portion
+                    Random generator = new Random();
+                    num1 = generator.nextInt(8); // all numbers up to 7
+                    num2 = generator.nextInt(8); // all numbers up to 7
+                    num3 = generator.nextInt(8); // all numbers up to 7
+                    tprefix = generator.nextInt(656); // all #s up to and including 655
+                    lnum = generator.nextInt(10000); // all numbers up to 9999
+                    //Converts int numbers to strings
+                    String sNum1 = Integer.toString(num1); 
+                    String sNum2 = Integer.toString(num2);
+                    String sNum3 = Integer.toString(num3);
+                    String sTprefix = String.format("%03d", tprefix); //Formats for leading 0s
+                    String sLnum = String.format("%04d", lnum); //Formats for leading 0s
+                     //Prints concatanate of generated strings
+                    System.out.println(sNum1 + sNum2 + sNum3 + "-" + sTprefix + "-" + sLnum);
+                    // Consume the leftover newline after pressing 'P'
+                    System.in.read();
+                } else {
+                    // If any other key is pressed, exit the loop and program
+                    System.out.println("Exiting the program.");
+                    break;
+                }
+            }
+        } catch (IOException e) {
+        }
+    }
+}
