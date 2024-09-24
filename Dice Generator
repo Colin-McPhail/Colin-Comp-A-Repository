@@ -14,25 +14,26 @@ import java.util.Scanner;
 public class U3L3_Random {
 
     public static void main(String[] args) throws IOException {
-        Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
+        Random random = new Random(); //creates new random class
+        Scanner scanner = new Scanner(System.in);//creates new scanner class
         {
-            char input;
-            System.out.println("Welcome to the dice roller!");
-            // Loop that continues until the user presses something other than 'r'
+            char input; //variable declaration 
+            System.out.println("Welcome to the dice roller!"); //prints message
+            // Loops that continues until the user presses something other than 'r'
             do {
-                // Roll the dice (random number between 1 and 6)
+                // Rolls the dice (random number between 1 and 6)
                 int diceRoll = random.nextInt(6) + 1;
 
                 // Display the result
                 System.out.println("You rolled a " + diceRoll + "!");
 
                 // Prompt the user for input
-                System.out.print("Press 'r' to roll again, or any other key to quit: ");
-                input = scanner.nextLine().charAt(0);  // Get the first character of the input
-            } while (input == 'r' || input == 'R');  // Continue if 'r' or 'R' is pressed
-            System.out.println("Thanks for playing! Goodbye.");
-            // Close the scanner to prevent resource leaks
+                System.out.print("Press 'r' to roll again, or any other key to quit: "); //prints message
+                input = scanner.nextLine().charAt(0);  // Get the first char of input
+            } while (input == 'r' || input == 'R');  // Continue generation if 'r' or 'R' is pressed
+            System.out.println("Thanks for playing! Goodbye."); //prints message 
+           
         }
     }
 }
+
