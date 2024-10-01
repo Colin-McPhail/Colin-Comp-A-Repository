@@ -1,0 +1,117 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.messingwithstrings;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class MessingWithStrings {
+
+    public static void main(String[] args) {
+        //Creates new random number generator
+        Random generator = new Random();
+        
+        //generates a random number 0-90
+        int num1 = generator.nextInt(91);
+        //finds Trig values of random number using Math function
+        double sin1 = Math.sin(num1);
+        double cos1 = Math.cos(num1);
+        double tan1 = Math.tan(num1);
+        
+        //uses roundAvoid method to round to thousandths place
+        sin1 = roundAvoid(sin1, 3);
+        cos1 = roundAvoid(cos1, 3);
+        tan1 = roundAvoid(tan1, 3);
+        
+        //generates a random number 1-20
+        double num2 = generator.nextDouble(20.0) + 1;
+        //assigns variable to pi
+        double pi = Math.PI;
+        //calculates area of a circle using Math class
+        double aCircle = (pi) * Math.pow(num2, 2);
+        //calculates volume of a circle using Math cass
+        double vCircle = (pi) * 2 * num2;
+        
+        //uses roundAvoid function to round to thousandths place
+        num2 = roundAvoid(num2, 3);
+        aCircle = roundAvoid(aCircle, 3);
+        vCircle = roundAvoid(vCircle, 3);
+        
+         //generates a random number 1000.0-100,000,000.0
+        double num3 = generator.nextDouble(99999000.0) + 1000.0;
+        //calculates square root of a number using Math class
+        double sqrNum3 = Math.sqrt(num3);
+        //calculates natural log of a number using Math class
+        double lnNum3 = Math.log(num3);
+        //calculates log base 10 of a number using Math class
+        double logNum3 = Math.log10(num3);
+        
+        //uses roundAvoid function to round to thousandths place
+        num3 = roundAvoid(num3, 3);
+        sqrNum3 = roundAvoid(aCircle, 3);
+        lnNum3 = roundAvoid(vCircle, 3);
+        logNum3 = roundAvoid(vCircle, 3);
+        
+        //assigns variable to the speed of light in m/s
+        double light = 299792458;
+        //calculates the mass required to generate the joules of energy generated randomly from 1000.0-100,000,000.0
+        double mass = (num3 / Math.pow(light, 2)) * 1000;
+        
+        //Prints out value of Number 1
+        System.out.println("Number 1: " + num1);
+        //Prints trig values of Number 1
+        System.out.println("Sine: " + sin1 + " Cosine: " + cos1 + " Tangent: " + tan1);
+        
+        //Prints out value of Number 2
+        System.out.println("Number 2: " + num2);
+        //Prints radius, area and volume of Number 2
+        System.out.println("Radius of a Circle = " + num2 + " Area of a Circle = " + aCircle + " Volume of a Circle = " + vCircle);
+        
+        //Prints out value of Number 3, formated to avoid scientific notation
+        System.out.println("Number 3: " + String.format("%.3f", num3));
+        //Prints out square root of Number 3
+        System.out.println("Square root of Number 3 = " + sqrNum3);
+        //Prints out Natural log and log base 10 of Number 3
+        System.out.println("Natural Logaithm of Number 3 = " + lnNum3 + " Log 10 of Number 3 = " + logNum3);
+        
+        //Prints out value of number 4, formmated to avoid scientific notation
+        System.out.println("Number 4 = " + String.format("%.3f", num3));
+        //Prints out Joules of number 4 and mas required to generate that energy, formated to avoid scientific notation
+        System.out.println("Joules = " + String.format("%.3f", num3) + " Mass required = " + String.format("%.12f", mass) + "g");
+        
+        //creates new scanner object
+        Scanner scan = new Scanner(System.in);
+        
+        //asks for decimal value
+        System.out.println("Number 5: Enter new Decimal Value");
+        //finds first double input
+        double rNum = scan.nextDouble();
+        //asks for integer value
+        System.out.println(" Number 5: Enter new Integer Value");
+        //finds first integer value
+        int iNum = scan.nextInt();
+        //prints out decimal and integer value
+        System.out.println("Decimal= " + rNum);
+        System.out.println("Integer= " + iNum);
+        //calculates given decimal to the power of the given integer
+        double val = Math.pow(rNum, iNum);
+        //rounds to 3 decimal places
+        val = roundAvoid(val, 3);
+        //prints out calculated value, formatted to avoid scientific notation
+        System.out.println("Value= " + String.format("%.3f",val));
+
+    }
+       //round avoid method to round to 3 decimal places
+    public static double roundAvoid(double value, int places) {
+       //scale is the number multipled by value to move 3 decimal places 
+        double scale = Math.pow(10, places);
+        //rounds to nearest integer and divides it back down to actual number
+        return Math.round(value * scale) / scale;
+    }
+
+}
