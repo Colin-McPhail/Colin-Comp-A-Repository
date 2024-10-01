@@ -79,13 +79,19 @@ public class MessingWithStrings {
         //Prints out Natural log and log base 10 of Number 3
         System.out.println("Natural Logaithm of Number 3 = " + lnNum3 + " Log 10 of Number 3 = " + logNum3);
         
+                      //creates new scanner object
+        Scanner scan = new Scanner(System.in);
+           System.out.println("Enter number of Decimal Places");
+        int nPlaces = scan.nextInt();
+        num3 = roundAvoid(num3, nPlaces);
+     
+        
         //Prints out value of number 4, formmated to avoid scientific notation
         System.out.println("Number 4 = " + String.format("%.3f", num3));
-        //Prints out Joules of number 4 and mas required to generate that energy, formated to avoid scientific notation
-        System.out.println("Joules = " + String.format("%.3f", num3) + " Mass required = " + String.format("%.12f", mass) + "g");
+
         
-        //creates new scanner object
-        Scanner scan = new Scanner(System.in);
+        //Prints out Joules of number 4 and mas required to generate that energy, formated to avoid scientific notation
+        System.out.println("Joules = " + (num3) + " Mass required = " + (mass) + "g");
         
         //asks for decimal value
         System.out.println("Number 5: Enter new Decimal Value");
@@ -95,15 +101,17 @@ public class MessingWithStrings {
         System.out.println(" Number 5: Enter new Integer Value");
         //finds first integer value
         int iNum = scan.nextInt();
+        System.out.println("Enter Number of Decimal places to round to");
+        int places = scan.nextInt();
         //prints out decimal and integer value
         System.out.println("Decimal= " + rNum);
         System.out.println("Integer= " + iNum);
         //calculates given decimal to the power of the given integer
         double val = Math.pow(rNum, iNum);
         //rounds to 3 decimal places
-        val = roundAvoid(val, 3);
+        val = roundAvoid(val, places);
         //prints out calculated value, formatted to avoid scientific notation
-        System.out.println("Value= " + String.format("%.3f",val));
+        System.out.println("Value= " + (val));
 
     }
        //round avoid method to round to 3 decimal places
