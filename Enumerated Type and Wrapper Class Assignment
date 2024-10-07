@@ -1,0 +1,64 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.wrapper_assignment;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class Wrapper_Assignment {
+    //Declares enum variables for Days of the week ad Months of the year
+    enum Days {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday}
+    enum Months {January, Febuary, March, April, May,June, July, August, September, October, November, December}
+
+    public static void main(String[] args) {
+        
+        //Task 1
+        //Prints each enum varaible in corresponding order and its ordinal value plus 1
+        System.out.println("Day of the Week: "+Days.Sunday+" Number of the Day " + (Days.Sunday.ordinal()+1));
+        System.out.println("Day of the Week: "+Days.Monday+" Number of the Day " + (Days.Monday.ordinal()+1 ));
+        System.out.println("Day of the Week: "+Days.Tuesday+" Number of the Day " + (Days.Tuesday.ordinal()+1) );
+        System.out.println("Day of the Week: "+Days.Wednesday+" Number of the Day " + (Days.Wednesday.ordinal()+1) );
+        System.out.println("Day of the Week: "+Days.Thursday+" Number of the Day " + (Days.Thursday.ordinal()+1) );
+        System.out.println("Day of the Week: "+Days.Friday+" Number of the Day " + (Days.Friday.ordinal()+1 ));
+        System.out.println("Day of the Week: "+Days.Saturday+" Number of the Day " + (Days.Saturday.ordinal()+1) );
+        
+        System.out.println("Month of the Year: "+Months.January+" Number of the Month " + (Months.January.ordinal()+1) );
+        System.out.println("Month of the Year: "+Months.Febuary+" Number of the Month " + (Months.Febuary.ordinal()+1) );
+        System.out.println("Month of the Year: "+Months.March+" Number of the Month " + (Months.March.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.April+" Number of the Month " + (Months.April.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.May+" Number of the Month " + (Months.May.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.June+" Number of the Month " + (Months.June.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.July+" Number of the Month " + (Months.July.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.August+" Number of the Month " + (Months.August.ordinal()+1) );
+        System.out.println("Month of the Year: "+Months.September+" Number of the Month " + (Months.September.ordinal()+1) );
+        System.out.println("Month of the Year: "+Months.October+" Number of the Month " + (Months.October.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.November+" Number of the Month " + (Months.November.ordinal()+1 ));
+        System.out.println("Month of the Year: "+Months.December+" Number of the Month " + (Months.December.ordinal()+1 ));
+        
+        
+        //Task 2
+        //Imports new scanner
+        Scanner scanner = new Scanner(System.in);
+         // Ask for the CCHS username
+        System.out.print("Enter your CCHS username (including graduation year): ");
+        String input = scanner.nextLine();
+        //Finds graduation year by taking last for characters of username
+        String year = input.substring(input.length()-4);
+        //Finds the year after graduation year and converts to integer + 1
+        int yearAfterGraduation = Integer.parseInt(year) + 1;
+        //FInds year of graduatio by parsing the found string 
+        int year2 = Integer.parseInt(year);
+        //Prints out the variables found above
+        System.out.println("Your graduation year: " + year);
+        System.out.println("The year after your graduation: " + yearAfterGraduation);
+        System.out.println("In computer language, you graduate in: " + Integer.toBinaryString(year2));
+        
+
+        
+    }
+}
