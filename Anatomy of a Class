@@ -1,0 +1,103 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.anatomy_class;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class Anatomy_Class {
+   //
+    public static void main(String[] args) {
+        //creates new car objects each with respective attributes
+     
+        Car bug = new Car();
+        bug.setBrand("VW Bug");
+        bug.setEngine(174);
+        bug.setPrice(20895.0);
+        bug.setSpeed(205.0);
+
+        Car prius = new Car();
+        prius.setBrand("Toyota Prius");
+        prius.setEngine(196);
+        prius.setPrice(29045.0);
+        prius.setSpeed(112.0);
+
+        Car bmw = new Car();
+        bmw.setBrand("BMW i8");
+        bmw.setEngine(369);
+        bmw.setPrice(147500.0);
+        bmw.setSpeed(155.0);
+
+        Car tesla = new Car();
+        tesla.setBrand("Tesla Model 3");
+        tesla.setEngine(295);
+        tesla.setPrice(42490.0);
+        tesla.setSpeed(145.0);
+       
+        //prints out each car objct in command line following format established in the to String Method below
+        System.out.println(bug);
+        System.out.println(prius);
+        System.out.println(bmw);
+        System.out.println(tesla);
+
+    }
+}
+
+class Car {
+ //declares the private variables of the cars attributes
+    private String carBrand = "";
+    private int enginePower;
+    private double maxSpeed;
+    private double price;
+
+    public Car() {
+    //constructor, sets initial face values
+        String carBrand = "";
+        enginePower = 0;
+        maxSpeed = 0;
+        price = 0.0;
+    }
+    //creates public setbrand method, String of cars name 
+    public void setBrand(String inBrand) {
+        carBrand = inBrand;
+    }
+    //returns public carbrand, used in println in toString method
+    public String getBrand() {
+        return carBrand;
+    }
+    //creates public setEngine method, integer of horsepower
+    public void setEngine(Integer inEngine) {
+        enginePower = inEngine;
+    }
+    //returns public engine, used in println in toString method
+    public Integer getEngine() {
+        return enginePower;
+    }
+    //creates public setSpeed method, double of maxspeed in mph
+    public void setSpeed(Double inSpeed) {
+        maxSpeed = inSpeed;
+    }
+    //returns public speed, used in println in toString method
+    public Double getSpeed() {
+        return maxSpeed;
+    }
+    //creates public setPrice method, double of price in usd
+    public void setPrice(Double inPrice) {
+        price = inPrice;
+    }
+    //returns public price, used in println in toString method
+    public Double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        //formates the object to print out following result 
+        String result = "";
+        result = "Car Brand: " + carBrand + " Engine Horsepower: " + enginePower + " Max Speed: " + maxSpeed + "(MPH) " + " Price: " + "$" + price;
+        return result;
+    }
+
+}
