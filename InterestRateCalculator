@@ -1,0 +1,74 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.interestratecalculator;
+
+import java.util.Scanner;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class InterestRateCalculator {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            InterestRate interestRateCalc = new InterestRate();
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+            double totalPaid = 0;
+
+            // Prompt user for financial amount
+            System.out.print("Please input a financial amount: ");
+            double initialAmount = scanner.nextDouble();
+            interestRateCalc.setTotalAmount(initialAmount);
+
+            // Prompt user for number of repayment months
+            System.out.print("How many months for repayment: ");
+            int repaymentMonths = scanner.nextInt();
+            interestRateCalc.setMonths(repaymentMonths);
+
+            // Calculate and display monthly payments
+            while (interestRateCalc.getRemainingMonths() > 0) {
+                double monthlyPayment = interestRateCalc.calculateMonthlyPayment();
+                totalPaid += monthlyPayment;
+
+                System.out.println("\n Month: " + interestRateCalc.getRemainingMonths());
+                System.out.println("Monthly Payment: " + currencyFormat.format(monthlyPayment));
+                System.out.println("Remaining Amount: " + currencyFormat.format(totalPaid));
+            }
+
+        }
+    }
+class InterestRate {
+
+    private static final double RATE = 3.5;
+    private double remainingAmount;
+    private int remainingMonths;
+
+    // Set total amount of money from user input
+    public void setTotalAmount(double amount) {
+        this.remainingAmount = amount;
+    }
+
+    public void setMonths(int months) {
+        this.remainingMonths = months;
+    }
+
+    // Calculate the price of each monthly payment
+    public double calculateMonthlyPayment() {
+        double totalAmountWithInterest = remainingAmount + remainingAmount * (RATE / 100);
+        double monthlyPayment = Math.round((totalAmountWithInterest / remainingMonths) * 100.0) / 100.0;
+
+        // Update remaining amount and months
+        remainingAmount -= monthlyPayment;
+        remainingMonths --;
+
+        return monthlyPayment;
+    }
+
+    public int getRemainingMonths() {
+        return remainingMonths;
+    }
+}
+
