@@ -1,0 +1,94 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.constructorassignment;
+
+
+
+public class ConstructorAssignment {
+
+    public static void main(String[] args) {
+        Course course1 = new Course("AP Computer Science A");
+        Course course2 = new Course("Calculus BC", "BC110", "Mr. Dahms", 1000);
+        Course course3 = new Course("Campus Ministry 12", "CM12", "Mr. Cunha", 100);
+        System.out.println(course1.toString());
+        System.out.println(course2.toString());
+        System.out.println(course3.toString());
+
+    }
+}
+
+class Course {
+
+    private String courseName;
+    private String courseCode;
+    private String instructorName;
+    private double pointsTotal;
+
+    public Course() {
+        courseName = "";
+        courseCode = "";
+        instructorName = "";
+        pointsTotal = 0;
+    }
+
+    public Course(String cN, String cD, String iN, double p) {
+        courseName = cN;
+        courseCode = cD;
+        instructorName = iN;
+        pointsTotal = p;
+
+    }
+
+    public Course(String cN) {
+        courseName = cN;
+        courseCode = null;
+        instructorName = null;
+        pointsTotal = 0;
+
+    }
+
+    public void setCourseName(String course) {
+        courseName = course;
+    }
+
+    public void setNameOnly(String course) {
+        courseName = course;
+    }
+
+    public void setCourseCode(String code) {
+        courseCode = code;
+    }
+
+    public void setinstructorName(String name) {
+        instructorName = name;
+    }
+
+    public void setpointsTotal(double points) {
+        pointsTotal = points;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public String getinstructorName() {
+        return instructorName;
+    }
+
+    public double getpointsTotal() {
+        return pointsTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "Course Title: " + courseName + "\n"
+                + "Course Code: " + courseCode + "\n"
+                + "Points Total: " + pointsTotal + "\n"
+                + "Instructor Name: " + instructorName + "\n";
+    }
+}
