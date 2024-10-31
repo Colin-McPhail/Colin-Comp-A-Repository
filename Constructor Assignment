@@ -1,92 +1,96 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package com.mycompany.constructorassignment;
-
-
+package com.mycompany.constructorassignment; // Defines the package for this class
 
 public class ConstructorAssignment {
 
     public static void main(String[] args) {
-        Course course1 = new Course("AP Computer Science A");
-        Course course2 = new Course("Calculus BC", "BC110", "Mr. Dahms", 1000);
-        Course course3 = new Course("Campus Ministry 12", "CM12", "Mr. Cunha", 100);
+        // Creates new Course objects using different constructors
+        Course course1 = new Course("AP Computer Science A"); // Calls constructor with only course name
+        Course course2 = new Course("Calculus BC", "BC110", "Mr. Dahms", 1000); // Calls constructor with all parameters
+        Course course3 = new Course("Campus Ministry 12", "CM12", "Mr. Cunha", 100); // Calls constructor with all parameters
+
+        // Prints the string representation of each course
         System.out.println(course1.toString());
         System.out.println(course2.toString());
         System.out.println(course3.toString());
-
     }
 }
 
 class Course {
-
+    // Instance variables to hold course details
     private String courseName;
     private String courseCode;
     private String instructorName;
     private double pointsTotal;
 
+    // Default constructor that initializes parameters to default values
     public Course() {
-        courseName = "";
-        courseCode = "";
-        instructorName = "";
-        pointsTotal = 0;
+        courseName = ""; // Blank name
+        courseCode = ""; // Blank code
+        instructorName = ""; // Blank instructor
+        pointsTotal = 0; // Blank points
     }
 
+    // Constructor with parameters for all course details
     public Course(String cN, String cD, String iN, double p) {
-        courseName = cN;
-        courseCode = cD;
-        instructorName = iN;
-        pointsTotal = p;
-
+        courseName = cN; // Set course name 
+        courseCode = cD; // Set course code
+        instructorName = iN; // Set instructor name
+        pointsTotal = p; // Set total points
     }
 
+    // Constructor with only the course name
     public Course(String cN) {
-        courseName = cN;
-        courseCode = null;
-        instructorName = null;
-        pointsTotal = 0;
-
+        courseName = cN; // Set course name
+        courseCode = null; // No course code provided
+        instructorName = null; // No instructor provided
+        pointsTotal = 0; // Blank points
     }
 
+    // Setter methods for modifying course details
     public void setCourseName(String course) {
-        courseName = course;
+        courseName = course; // Set course name
     }
 
     public void setNameOnly(String course) {
-        courseName = course;
+        courseName = course; // Set course name for name only
     }
 
     public void setCourseCode(String code) {
-        courseCode = code;
+        courseCode = code; // Set course code
     }
 
     public void setinstructorName(String name) {
-        instructorName = name;
+        instructorName = name; // Set instructor name
     }
 
     public void setpointsTotal(double points) {
-        pointsTotal = points;
+        pointsTotal = points; // Set total points
     }
 
+    // Getter methods for retrieving course details
     public String getCourseName() {
-        return courseName;
+        return courseName; // Return course name
     }
 
     public String getCourseCode() {
-        return courseCode;
+        return courseCode; // Return course code
     }
 
     public String getinstructorName() {
-        return instructorName;
+        return instructorName; // Return instructor name
     }
 
     public double getpointsTotal() {
-        return pointsTotal;
+        return pointsTotal; // Return total points
     }
 
+    // Override toString method to provide a string representation of the course
     @Override
     public String toString() {
-        return "Course Title: " + courseName + "\n"
+        return "Course Title: " + courseName + "\n" // Format course details for output
                 + "Course Code: " + courseCode + "\n"
                 + "Points Total: " + pointsTotal + "\n"
                 + "Instructor Name: " + instructorName + "\n";
