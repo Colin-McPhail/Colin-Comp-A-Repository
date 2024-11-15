@@ -1,0 +1,106 @@
+package com.mycompany.mystore;
+
+import java.util.*;
+import java.text.DecimalFormat;
+
+/**
+ * A simple program to simulate adding items to a shopping cart while respecting a maximum budget.
+ * Author: CMcPhail2026
+ */
+public class MyStore {
+
+    public static void main(String[] args) {
+        DecimalFormat df = new DecimalFormat("#.##"); // Creates decimal format for rounding
+        
+        final double MAX_BUDGET = 250; // Maximum budget allowed
+        double cost = 0;              // Cost of the current item
+        double totalCost = 0;         // Total cost of all items added so far
+        Scanner scan = new Scanner(System.in);
+
+        // Define available items with their prices
+        Item tShirt = new Item("TShirt", 29.99);
+        Item shoes = new Item("Shoes", 125.99);
+        Item jeans = new Item("Jeans", 60.99);
+        Item jacket = new Item("Jacket", 250.00);
+        Item hat = new Item("Hat", 25.99);
+        Item shorts = new Item("Shorts", 75.99);
+        Item blouse = new Item("Blouse", 88.99);
+
+        // Shopping loop
+        while (true) {
+            System.out.println("Please enter an item: TShirt, Shoes, Jeans, Jacket, Hat, Shorts, Blouse. Enter Q to exit");
+            String myItem = scan.nextLine(); // User input for item name
+
+            // Determine the selected item and its cost
+            if (myItem.equalsIgnoreCase("TShirt")) {
+                cost = tShirt.getPrice();
+                System.out.println(tShirt);
+            } else if (myItem.equalsIgnoreCase("Shoes")) {
+                cost = shoes.getPrice();
+                System.out.println(shoes);
+            } else if (myItem.equalsIgnoreCase("Jeans")) {
+                cost = jeans.getPrice();
+                System.out.println(jeans);
+            } else if (myItem.equalsIgnoreCase("Jacket")) {
+                cost = jacket.getPrice();
+                System.out.println(jacket);
+            } else if (myItem.equalsIgnoreCase("Hat")) {
+                cost = hat.getPrice();
+                System.out.println(hat);
+            } else if (myItem.equalsIgnoreCase("Shorts")) {
+                cost = shorts.getPrice();
+                System.out.println(shorts);
+            } else if (myItem.equalsIgnoreCase("Blouse")) {
+                cost = blouse.getPrice();
+                System.out.println(blouse);
+            } else if (myItem.equalsIgnoreCase("Q")) {   //Handles exit input
+                System.out.println("Thank you for shopping with us.");
+                break;
+            } else {
+                System.out.println("Invalid Item"); // Handle invalid input
+                cost = 0.0;
+                continue; // Skip to the next iteration
+            }
+
+            // Check if adding the item exceeds the budget
+            if (totalCost + cost > MAX_BUDGET) {
+                System.out.println("Warning: Adding this item exceeds the max budget. Item not added.");
+                continue; // Skip adding the item to the total
+            }
+
+            // Add item cost to the total if within budget
+            totalCost += cost;
+            String formattedTotalCost = df.format(totalCost); // formats totalCost to avoid floating point errors
+        
+            System.out.println("Item added. Current total cost: $" + formattedTotalCost);
+        }
+    }
+}
+
+// Class representing a store item
+class Item {
+    private final String name;    // Name of the item
+    private final double price;   // Price of the item
+
+    // Constructor to initialize item name and price
+    public Item(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Getter for item name
+    public String getName() {
+        return name;
+    }
+
+    // Getter for item price
+    public double getPrice() {
+        return price;
+    }
+
+    // Overriding the toString method to display item details
+    @Override
+    public String toString() {
+        return "Item: " + name + " Price: $" + price;
+    }
+}
