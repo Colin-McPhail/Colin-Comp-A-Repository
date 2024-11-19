@@ -1,0 +1,69 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.shoppinglist;
+import java.util.*;
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class ShoppingList {
+
+    public static void main(String[] args) {
+         Scanner scan = new Scanner(System.in);
+        ArrayList shoppingList = new ArrayList();
+        
+        System.out.println("Enter items for your shopping list (type 'done' to finish):");
+        
+        // Collect items from the user
+        while (true) {
+            System.out.print("Item: ");
+            String item = scan.nextLine().trim();
+            if (item.equalsIgnoreCase("done")) {
+                break;
+            }
+            if (!item.isEmpty()) {
+                shoppingList.add(item);
+            } else {
+                System.out.println("Item cannot be empty. Please enter a valid item.");
+            }
+        }
+        
+        // Display the list
+        displayShoppingList(shoppingList);
+        
+        // Allow the user to remove an item
+        if (!shoppingList.isEmpty()) {
+            System.out.println("Enter the number of the item you want to remove (or 0 to exit):");
+            try {
+                int itemNumber = Integer.parseInt(scan.nextLine());
+                if (itemNumber > 0 && itemNumber <= shoppingList.size()) {
+                    shoppingList.remove(itemNumber - 1); // Adjust for zero-based index
+                    System.out.println("Item removed.");
+                } else if (itemNumber != 0) {
+                    System.out.println("Invalid item number.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+            }
+        }
+
+        // Redisplay the updated list
+        displayShoppingList(shoppingList);
+        
+        scan.close();
+    }
+    
+    // Helper method to display the shopping list
+    private static void displayShoppingList(ArrayList<String> list) {
+        System.out.println("\nYour Shopping List:");
+        if (list.isEmpty()) {
+            System.out.println("The shopping list is empty.");
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println((i + 1) + ". " + list.get(i));
+            }
+        }
+    }
+}
