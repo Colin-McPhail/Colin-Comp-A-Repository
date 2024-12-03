@@ -1,0 +1,88 @@
+        // Pattern a: Inverted triangle
+        {
+            final int MAX_ROWS = 10; // Maximum rows for the pattern
+            System.out.println("a.");
+            // Loop through each row
+            for (int row = 1; row <= MAX_ROWS; row++) {
+                // Print stars for the current row
+                for (int star = 10; star >= row; star--) {
+                    System.out.print("*");
+                }
+                // Move to the next line
+                System.out.println();
+            }
+        }
+
+        // Pattern b: Right-aligned triangle
+        {
+            final int MAX_ROWS = 10; // Maximum rows for the pattern
+            System.out.println("b.");
+            // Loop through each row
+            for (int row = 1; row <= MAX_ROWS; row++) {
+                // Print spaces to align the stars to the right
+                for (int blank = 9; blank >= row; blank--) {
+                    System.out.print(" ");
+                }
+                // Print stars for the current row
+                for (int star = 1; star <= row; star++) {
+                    System.out.print("*");
+                }
+                // Move to the next line
+                System.out.println();
+            }
+        }
+
+        // Pattern c: Left-aligned triangle
+        {
+            final int MAX_ROWS = 10; // Maximum rows for the pattern
+            System.out.println("c.");
+            // Loop through each row
+            for (int row = 1; row <= MAX_ROWS; row++) {
+                // Print spaces to align the stars to the left
+                for (int blank = 2; blank <= row; blank++) {
+                    System.out.print(" ");
+                }
+                // Print stars for the current row
+                for (int star = 10; star >= row; star--) {
+                    System.out.print("*");
+                }
+                // Move to the next line
+                System.out.println();
+            }
+        }
+
+        // Pattern d: Diamond shape
+        {
+            final int MAX_ROWS = 5; // Half of the diamond's height
+            System.out.println("d.");
+            
+            // Upper part of the diamond
+            for (int row = 1; row <= MAX_ROWS; row++) {
+                // Print spaces to center-align the stars
+                for (int blank = 1; blank <= MAX_ROWS - row; blank++) {
+                    System.out.print(" ");
+                }
+                // Print stars for the current row
+                for (int star = 1; star <= (2 * row - 1); star++) {
+                    System.out.print("*");
+                }
+                // Move to the next line
+                System.out.println();
+            }
+
+            // Lower part of the diamond
+            for (int row = MAX_ROWS; row >= 1; row--) {
+                // Print spaces to center-align the stars
+                for (int space = 1; space <= MAX_ROWS - row; space++) {
+                    System.out.print(" ");
+                }
+                // Print stars for the current row
+                for (int star = 1; star <= (2 * row - 1); star++) {
+                    System.out.print("*");
+                }
+                // Move to the next line
+                System.out.println();
+            }
+        }
+    }
+}
