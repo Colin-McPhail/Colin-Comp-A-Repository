@@ -12,6 +12,16 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class StickFigureGame extends JPanel implements ActionListener, KeyListener {
+    
+        public static void main(String[] args) {
+        JFrame frame = new JFrame("Stick Figure Combat Game");
+        StickFigureGame game = new StickFigureGame();
+        frame.add(game);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+        
     private final Timer timer;
     private Player player;
     private ArrayList<Enemy> enemies;
@@ -227,14 +237,6 @@ public class StickFigureGame extends JPanel implements ActionListener, KeyListen
     @Override
     public void keyTyped(KeyEvent e) {}
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Stick Figure Combat Game");
-        StickFigureGame game = new StickFigureGame();
-        frame.add(game);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
 
 // --- Game Entity Classes ---
