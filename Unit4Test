@@ -1,0 +1,85 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.unit4test;
+
+import java.util.*;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class Unit4Test {
+
+    public static void main(String[] args) {
+        // List to store the cards
+        ArrayList<Card> cards = new ArrayList<>();
+        // Loop to instantiate 5 unique Card objects
+        while (cards.size() < 5) {   //Checks if their are less than 5 cards in the array
+            Card card = new Card();  
+            if (!cards.contains(card)) { //Adds cards to array
+                cards.add(card);
+                System.out.println("Card " + (cards.size()) + ": " + card); //Prints each card out until array reaches 5
+            }
+        }
+
+        // Finding the card with the highest value
+        //Starts with first card in array and checks each card to find greatest using iteration
+        Card highestCard = cards.get(0);
+        for (Card card : cards) {
+            if (card.getValue() > highestCard.getValue()) {
+                highestCard = card;
+            }
+        }
+        System.out.println("\nThe highest card is: " + highestCard);
+    }
+}
+
+// Class to represent a Card
+class Card {
+
+    private final String suit;
+    private final int value;
+
+    // Array of suits
+    private static final String[] SUITS = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    // Random object for generating random values
+    private static final Random rand = new Random();
+
+    // Constructor
+    public Card() {
+        // Assign random suit and value
+        suit = SUITS[rand.nextInt(SUITS.length)];
+        value = rand.nextInt(13) + 1; // Values 1-13
+    }
+
+    // Getter for value
+    public int getValue() {
+        return value;
+    }
+
+    // Getter for suit
+    public String getSuit() {
+        return suit;
+    }
+
+    // Override toString for easy display
+    @Override
+    public String toString() {
+        return value + " of " + suit;
+    }
+
+    // Override equals to ensure no duplicate cards in the deck
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Card card = (Card) obj;
+        return value == card.value && suit.equals(card.suit);
+    }
+
+}
