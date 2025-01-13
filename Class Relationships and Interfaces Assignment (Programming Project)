@@ -1,0 +1,121 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.taskrankingassignment;
+
+import java.util.*;
+
+/**
+ * Main class for the Task Ranking Assignment. Contains the main method to
+ * execute the program logic.
+ */
+public class TaskRankingAssignment {
+
+    public static void main(String[] args) {
+        // Create task instances with name, priority, and complexity values
+        Task task1 = new Task("Wash Laundry", 6, 7);
+        Task task2 = new Task("Do Homework", 5, 4);
+        Task task3 = new Task("Clean Room", 3, 9);
+        Task task4 = new Task("Mow Lawn", 1, 1);
+        Task task5 = new Task("Email Dr. Nelson", 2, 3);
+        Task task6 = new Task("Pick-Up Brother From Practice", 5, 11);
+
+        // Create a list to store all tasks
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(task1); // Add task1 to the list
+        tasks.add(task2); // Add task2 to the list
+        tasks.add(task3); // Add task3 to the list
+        tasks.add(task4); // Add task4 to the list
+        tasks.add(task5); // Add task5 to the list
+        tasks.add(task6); // Add task6 to the list
+
+        // Sort the list of tasks using the compareTo method defined in the Task class
+        Collections.sort(tasks);
+
+        // Print the tasks in sorted order
+        System.out.println("Tasks sorted by priority and then complexity:");
+        for (Task task : tasks) {
+            System.out.println(task); // Each task's toString method is called to format output
+        }
+    }
+}
+
+//Represents a task with a name, priority, and complexity level.
+class Task implements Complexity, Priority, Comparable<Task> {
+
+    // Task properties: name, complexity level, and priority level
+    private final String taskName;
+    private int complexityLevel;
+    private int priorityLevel;
+
+    //Constructor to initialize a Task object with a name, priority, and complexity.
+    public Task(String taskInfo, int pLevel, int cLevel) {
+        taskName = taskInfo; //the name or description of the task
+        complexityLevel = cLevel; //the priority level of the task (lower values = higher priority)
+        priorityLevel = pLevel; //the complexity level of the task ( higher values = more complex)
+    }
+
+    /**
+     * Sets the complexity level of the task.
+     *
+     * @param cLevel the new complexity level
+     */
+    public void setComplexity(int cLevel) {
+        complexityLevel = cLevel;
+    }
+
+    // Returns the complexity level of the task.
+    public int getComplexity() {
+        return complexityLevel;
+    }
+
+    //Sets the priority level of the task.
+    public void setPriority(int pLevel) {
+        priorityLevel = pLevel;
+    }
+
+    //Returns the priority level of the task.
+    public int getPriority() {
+        return priorityLevel;
+    }
+
+    // Returns the name of the task.
+    public String getTaskName() {
+        return taskName;
+    }
+
+    //Overrides the toString method to provide a formatted string representation
+    //of a task object for easy display.
+    @Override
+    public String toString() {
+        return "Task: " + taskName + " | Priority: " + priorityLevel + " | Complexity: " + complexityLevel;
+    }
+
+    // Defines custom comparison logic for sorting tasks.
+    // Tasks are first compared by priority (ascending order), then by complexity (ascending order).
+    @Override
+    public int compareTo(Task other) {
+        // Compare tasks by priority first
+        if (this.priorityLevel != other.priorityLevel) {
+            return Integer.compare(this.priorityLevel, other.priorityLevel);
+        }
+        // If priorities are equal, compare tasks by complexity
+        return Integer.compare(this.complexityLevel, other.complexityLevel);
+    }
+}
+
+// Interface to define methods related to task priority.
+interface Priority {
+
+    void setPriority(int priorityLevel); // Method to set the priority level
+
+    int getPriority(); // Method to retrieve the priority level
+}
+
+// Interface to define methods related to task complexity.
+interface Complexity {
+
+    void setComplexity(int complexityLevel); // Method to set the complexity level
+
+    int getComplexity(); // Method to retrieve the complexity level
+}
