@@ -1,0 +1,135 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.method.design.assignment;
+
+import java.util.*;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class MethodDesignAssignment {
+
+    public static void main(String[] args) {
+        // List to store all student objects
+        ArrayList<Student> students = new ArrayList<>();
+
+        // Creating and adding the first student with their courses and test scores
+        Student student1 = new Student("Paul", "Clement");
+        student1.addCourse(new Course("Math", 85.5));
+        student1.addCourse(new Course("Science", 40.0));
+        student1.addCourse(new Course("History", 78.5));
+        students.add(student1);
+
+        // Creating and adding the second student with their courses and test scores
+        Student student2 = new Student("Mary", "Smith");
+        student2.addCourse(new Course("Math", 72.0));
+        student2.addCourse(new Course("Science", 58.5));
+        student2.addCourse(new Course("History", 14.0));
+        students.add(student2);
+
+        // Creating and adding the third student with their courses and test scores
+        Student student3 = new Student("Emily", "Johnson");
+        student3.addCourse(new Course("Math", 96.0));
+        student3.addCourse(new Course("Science", 35.0));
+        student3.addCourse(new Course("History", 60.0));
+        students.add(student3);
+
+        // Iterating through the student list and displaying their details
+        for (Student student : students) {
+            System.out.println(student);
+            System.out.println("Average Score: " + student.getAverage() + "\n");
+        }
+    }
+}
+
+/**
+ * Represents a student with a first name, last name, and a list of courses.
+ */
+class Student {
+
+    private String firstName; // Student's first name
+    private String lastName;  // Student's last name
+    private ArrayList<Course> courses; // List of courses the student is enrolled in
+
+    // Default constructor initializes empty name and an empty course list
+    public Student() {
+        this.firstName = "";
+        this.lastName = "";
+        this.courses = new ArrayList<>();
+    }
+
+    // Constructor to initialize the student's name and an empty course list
+    public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courses = new ArrayList<>();
+    }
+
+    // Adds a course to the student's course list
+    public void addCourse(Course course) {
+        this.courses.add(course);
+    }
+
+    // Calculates and returns the average test score across all courses
+    public double getAverage() {
+        double total = 0.0;
+        for (Course course : courses) {
+            total += course.getTestScore();
+        }
+        return courses.isEmpty() ? 0.0 : total / courses.size();
+    }
+
+    // Returns a formatted string with student and course details
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("Student: " + firstName + " " + lastName + "\n");
+        for (Course course : courses) {
+            result.append("Course: ").append(course.getCourseName())
+                    .append(", Test Score: ").append(course.getTestScore()).append("\n");
+        }
+        return result.toString();
+    }
+}
+
+/**
+ * Represents a course with a name and a test score.
+ */
+class Course {
+
+    private String courseName; // Name of the course
+    private double testScore;  // Test score for the course
+
+    // Default constructor initializes to default values
+    public Course() {
+        this.courseName = "Unnamed Course";
+        this.testScore = 0.0;
+    }
+
+    // Constructor to initialize the course name and test score
+    public Course(String courseName, double testScore) {
+        this.courseName = courseName;
+        this.testScore = testScore;
+    }
+
+    // Returns the name of the course
+    public String getCourseName() {
+        return courseName;
+    }
+
+    // Sets the name of the course
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    // Returns the test score of the course
+    public double getTestScore() {
+        return testScore;
+    }
+
+    // Sets the test score of the course
+    public void setTestScore(double testScore) {
+        this.testScore = testScore;
+    }
+}
