@@ -1,4 +1,4 @@
-/*
+*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 package com.mycompany.testing;
@@ -37,37 +37,41 @@ public class Testing {
         }
     }
 
-    public static void volumeCalc3() {
+    public static void volumeCalc3() { //renamed method for clarity
         System.out.println("enter the radius of your cone, then height of your cone");
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in); //added a proper scanner
         int r = s.nextInt();
-        int h = s.nextInt();
+        int h = s.nextInt(); //added scanner to find h integer
         double result = Math.PI * Math.pow(r, 2) * h;
-        System.out.println(result);
+        System.out.println(result); //changed r to result
     }
 
-    public static void volumeCalc2() {
+    public static void volumeCalc2() { //renamed method for clarity
         System.out.println("enter the radius of your cone, then height of your cone");
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in); //added a proper scanner
         int r = s.nextInt();
         int h = s.nextInt();
-        double result = Math.PI * Math.pow(r, 2) * (h / 3);
-        System.out.println(result);
+        double result = Math.PI * Math.pow(r, 2) * (h / 3); //added (h/3) instead of h for accuracy
+        System.out.println(result); //changed r to result
     }
 
-    public static void areaCalc() {
+    public static void areaCalc() { //renamed method for clarity
         System.out.println("enter the radius of your circle");
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in); //added a proper scanner
         int r = s.nextInt();
         double result = Math.PI * Math.pow(r, 2);
-        System.out.println(result);
+        System.out.println(result); //changed r to result
     }
 
-    public static void volumeCalc() {
+    public static void volumeCalc() { //renamed method for clarity
         System.out.println("enter the radius of your circle");
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in); //added a proper scanner
         int r = s.nextInt();
-        double result = (4.0 / 3.0) * (Math.PI * Math.pow(r, 3));
+        double result = (4.0 / 3.0) * (Math.PI * Math.pow(r, 3)); //changed 4 and 3 to 4.0 and 3.0 double
+        System.out.println(result); //changed r to result
+    }
+}
+
         System.out.println(result);
     }
 }
