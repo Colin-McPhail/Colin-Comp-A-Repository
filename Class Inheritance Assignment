@@ -1,0 +1,292 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.classinheritanceassignment;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class ClassInheritanceAssignment {
+
+    public static void main(String[] args) {
+        // Create and display various vehicle objects
+        //vechicle name, speed (mph), passengers, cargo (lbs), special characteristic stat ex: sails, battery etc, 
+        Vehicle v = new Vehicle("Boat", 30.0, 2000, 100000.00); 
+        System.out.println(v);
+
+        Car myCar = new Car("BMW", 200.00, 2, 100.00, 30.0);
+        System.out.println(myCar);
+        //Two Custom Cars, Ferrari and Tesla
+        SportsCar sc = new SportsCar("Ferrari", 220.0, 2, 50.0, 15.0, true);
+        System.out.println(sc);
+
+        ElectricCar ec = new ElectricCar("Tesla", 150.0, 5, 0.0, 120.0, 85.0);
+        System.out.println(ec);
+        //Two Custom Boats, Inheriting from vechicles, sailboat and yacht
+        Sailboat sb = new Sailboat("Beneteau", 40.0, 6, 500.0, 2);
+        System.out.println(sb);
+
+        Yacht y = new Yacht("Sunseeker", 35.0, 20, 2000.0, true);
+        System.out.println(y);
+        //Two custom aircraft, inheriting from vechicles, helicopter and jet
+        Jet j = new Jet("Boeing", 600.0, 150, 50000.0, 2);
+        System.out.println(j);
+
+        Helicopter h = new Helicopter("Bell", 180.0, 4, 1000.0, 1);
+        System.out.println(h);
+        //two special vecichles, inheriting from vechicles, motocycle and hovercraft
+        Motorcycle m = new Motorcycle("Harley-Davidson", 100.0, 2, 50.0, false);
+        System.out.println(m);
+
+        Hovercraft hc = new Hovercraft("AirRider", 60.0, 4, 300.0, true);
+        System.out.println(hc);
+    }
+}
+
+// The Base Vehicle Class, implements the Speedometer interface
+// Base Vehicle Class implementing Speedometer interface
+class Vehicle implements Speedometer {
+
+    protected String brandName;
+    protected double speed;
+    protected int passengers;
+    protected double cargoWeight;
+
+    // Default constructor
+    public Vehicle() {
+        this("", 0.0, 0, 0.0);
+    }
+
+    // Parameterized constructor
+    public Vehicle(String inBrand, double inSpeed, int inPassengers, double inCargo) {
+        this.brandName = inBrand;
+        this.speed = inSpeed;
+        this.passengers = inPassengers;
+        this.cargoWeight = inCargo;
+    }
+
+    // Getters and Setters
+    public String getBrand() {
+        return brandName;
+    }
+   //setter for brand
+    public void setBrandName(String inBrand) {
+        this.brandName = inBrand;
+    }
+   //getter for speed
+    public double getSpeed() {
+        return speed;
+    }
+    //setter for speed
+    public void setSpeed(double inSpeed) {
+        this.speed = inSpeed;
+    }
+   //getter for passengers
+    public int getPassengers() {
+        return passengers;
+    }
+    //setter for passangers
+    public void setPassengers(int inPassengers) {
+        this.passengers = inPassengers;
+    }
+//getter for cargo weight
+    public double getCargoWeight() {
+        return cargoWeight;
+    }
+//setting for cargo weight
+    public void setCargoWeight(double inCargoWeight) {
+        this.cargoWeight = inCargoWeight;
+    }
+
+    // toString method for displaying vehicle details
+    @Override
+    public String toString() {
+        return "\nBrand: " + brandName + "\n"
+                + "Speed (mph): " + speed + "\n"
+                + "Passengers: " + passengers + "\n"
+                + "Cargo (lbs): " + cargoWeight + "\n"
+                ;
+    }
+}
+
+// Speedometer interface to enforce speed methods
+interface Speedometer {
+
+    void setSpeed(double inSpeed);
+
+    double getSpeed();
+}
+
+// Car class inheriting from Vehicle
+class Car extends Vehicle {
+
+    private double mpg;
+    private boolean spoiler;
+    private boolean stereo;
+
+    public Car(String inBrand, double inSpeed, int inPassengers, double inCargo, double inMPG) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.mpg = inMPG;
+    }
+//setter for spoiler
+    public void setSpoiler(boolean inSpoiler) {
+        this.spoiler = inSpoiler;
+    }
+//getter for spoiler
+    public boolean getSpoiler() {
+        return spoiler;
+    }
+//setter for stereo
+    public void setStereo(boolean inStereo) {
+        this.stereo = inStereo;
+    }
+//getter for stereo
+    public boolean getStereo() {
+        return stereo;
+    }
+//setter for speed, spoiler is 20mph faster
+    @Override
+    public double getSpeed() {
+        return spoiler ? super.getSpeed() + 20 : super.getSpeed();
+    }
+//getter for mpg, stereo = more mpg
+    public double getMPG() {
+        return stereo ? mpg * 0.9 : mpg;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "MPG: " + getMPG();
+    }
+}
+
+// SportsCar class inheriting from Car
+class SportsCar extends Car {
+
+    private boolean turbo; // Indicates whether the car has a turbocharger
+
+    public SportsCar(String inBrand, double inSpeed, int inPassengers, double inCargo, double inMPG, boolean turbo) {
+        super(inBrand, inSpeed, inPassengers, inCargo, inMPG);
+        this.turbo = turbo;
+    }
+
+    @Override
+    public double getSpeed() {
+        return turbo ? super.getSpeed() + 50 : super.getSpeed(); // Turbo increases speed by 50 mph
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Turbo: " + (turbo ? "Enabled" : "Disabled");
+    }
+}
+
+// ElectricCar class inheriting from Car
+class ElectricCar extends Car {
+
+    private double batteryCapacity; // Battery capacity in kWh
+
+    public ElectricCar(String inBrand, double inSpeed, int inPassengers, double inCargo, double inMPG, double batteryCapacity) {
+        super(inBrand, inSpeed, inPassengers, inCargo, inMPG);
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Battery Capacity: " + batteryCapacity + " kWh";
+    }
+}
+
+// Boat classes
+class Sailboat extends Vehicle {
+
+    private int sails; // Number of sails
+
+    public Sailboat(String inBrand, double inSpeed, int inPassengers, double inCargo, int sails) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.sails = sails;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Sails: " + sails;
+    }
+}
+
+class Yacht extends Vehicle {
+
+    private boolean hasJacuzzi; // Whether the yacht has a jacuzzi
+//inheritance from vechicle
+    public Yacht(String inBrand, double inSpeed, int inPassengers, double inCargo, boolean hasJacuzzi) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.hasJacuzzi = hasJacuzzi;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Jacuzzi: " + (hasJacuzzi ? "Yes" : "No");
+    }
+}
+
+// Airplane classes
+class Jet extends Vehicle {
+
+    private int engines; // Number of engines
+
+    public Jet(String inBrand, double inSpeed, int inPassengers, double inCargo, int engines) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.engines = engines;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Engines: " + engines;
+    }
+}
+
+class Helicopter extends Vehicle {
+
+    private int rotors; // Number of rotors
+
+    public Helicopter(String inBrand, double inSpeed, int inPassengers, double inCargo, int rotors) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.rotors = rotors;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Rotors: " + rotors;
+    }
+}
+
+// Unique Vehicles
+class Motorcycle extends Vehicle {
+
+    private boolean hasSidecar; // Indicates whether the motorcycle has a sidecar
+
+    public Motorcycle(String inBrand, double inSpeed, int inPassengers, double inCargo, boolean hasSidecar) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.hasSidecar = hasSidecar;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Sidecar: " + (hasSidecar ? "Yes" : "No");
+    }
+}
+
+class Hovercraft extends Vehicle {
+
+    private boolean amphibious; // Whether the hovercraft is amphibious
+
+    public Hovercraft(String inBrand, double inSpeed, int inPassengers, double inCargo, boolean amphibious) {
+        super(inBrand, inSpeed, inPassengers, inCargo);
+        this.amphibious = amphibious;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Amphibious: " + (amphibious ? "Yes" : "No"); //special amphipous character
+    }
+}
