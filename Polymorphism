@@ -1,0 +1,123 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aircraftdemo;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+import java.util.*;
+
+// Main class to demonstrate the hierarchy and ArrayList usage
+public class AircraftDemo {
+    public static void main(String[] args) {
+        // Create ArrayList to store different aircraft types
+        java.util.ArrayList<Aircraft> aircraftList = new java.util.ArrayList<>();
+        
+        // Create instances of each class
+        Aircraft genericAircraft = new Aircraft(120, "Boeing");
+        SingleEnginePlane cessna = new SingleEnginePlane(36, "Cessna", "Rotary", 180);
+        Helicopter robinson = new Helicopter(33, "Robinson", "Rotary", 260, 16, 4);
+        
+        // Add objects to the ArrayList
+        aircraftList.add(genericAircraft);
+        aircraftList.add(cessna);
+        aircraftList.add(robinson);
+        
+        // Print each object from the ArrayList
+        System.out.println("Aircraft in fleet:");
+        for (Aircraft aircraft : aircraftList) {
+            System.out.println(aircraft);
+        }
+    }
+}
+
+// Base class Aircraft
+class Aircraft {
+    private int wingspan; // in feet
+    private String manufacturer;
+    
+    public Aircraft(int wingspan, String manufacturer) {
+        this.wingspan = wingspan;
+        this.manufacturer = manufacturer;
+    }
+    
+    public int getWingspan() {
+        return wingspan;
+    }
+    
+    public String getManufacturer() {
+        return manufacturer;
+    }
+    
+    @Override
+    public String toString() {
+        return "Aircraft [Manufacturer: " + manufacturer + 
+               ", Wingspan: " + wingspan + " ft]";
+    }
+}
+
+// Child class SingleEnginePlane
+class SingleEnginePlane extends Aircraft {
+    private String engineType;
+    private int horsepower;
+    
+    public SingleEnginePlane(int wingspan, String manufacturer, 
+                            String engineType, int horsepower) {
+        super(wingspan, manufacturer);
+        this.engineType = engineType;
+        this.horsepower = horsepower;
+    }
+    
+    public String getEngineType() {
+        return engineType;
+    }
+    
+    public int getHorsepower() {
+        return horsepower;
+    }
+    
+    @Override
+    public String toString() {
+        return "SingleEnginePlane [Manufacturer: " + getManufacturer() + 
+               ", Wingspan: " + getWingspan() + " ft" +
+               ", Engine Type: " + engineType + 
+               ", Horsepower: " + horsepower + "]";
+    }
+}
+
+// Child class of SingleEnginePlane
+class Helicopter extends SingleEnginePlane {
+    private int bladeLength; // in feet
+    private int bladeCount;
+    
+    public Helicopter(int wingspan, String manufacturer, 
+                     String engineType, int horsepower,
+                     int bladeLength, int bladeCount) {
+        super(wingspan, manufacturer, engineType, horsepower);
+        this.bladeLength = bladeLength;
+        this.bladeCount = bladeCount;
+    }
+    
+    public int getBladeLength() {
+        return bladeLength;
+    }
+    
+    public int getBladeCount() {
+        return bladeCount;
+    }
+    
+    @Override
+    public String toString() {
+        return "Helicopter [Manufacturer: " + getManufacturer() + 
+               ", Wingspan: " + getWingspan() + " ft" +
+               ", Engine Type: " + getEngineType() + 
+               ", Horsepower: " + getHorsepower() +
+               ", Blade Length: " + bladeLength + " ft" +
+               ", Blade Count: " + bladeCount + "]";
+    }
+}
+
+
