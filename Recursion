@@ -1,0 +1,75 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.recursionassignment;
+
+import java.util.*;
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+public class RecursionAssignment {
+
+        public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of lines for Pascal's Triangle: ");
+        int numLines = scanner.nextInt();
+
+        for (int i = 0; i < numLines; i++) {
+            int[] row = generatePascalLine(i);
+            printPascalLine(row, i + 1, numLines);  // Pass numLines for spacing
+        }
+
+        scanner.close();
+    }
+
+    /**
+     * Generates the Nth line of Pascal's Triangle using recursion.
+     *
+     * @param n The line number (0-based index).
+     * @return An array representing the Nth line of Pascal's Triangle.
+     */
+    public static int[] generatePascalLine(int n) {
+        if (n == 0) {
+            return new int[]{1}; // Base case: First line is just 1
+        } else {
+            int[] previousLine = generatePascalLine(n - 1);
+            int[] currentLine = new int[n + 1];
+
+            currentLine[0] = 1; // First element is always 1
+            currentLine[n] = 1; // Last element is always 1
+
+            // Calculate interior values by summing the two values above
+            for (int i = 1; i < n; i++) {
+                currentLine[i] = previousLine[i - 1] + previousLine[i];
+            }
+
+            return currentLine;
+        }
+    }
+
+    /**
+     * Prints a line of Pascal's Triangle with proper spacing.
+     *
+     * @param line The array representing the line to print.
+     * @param lineNumber The line number (for display).
+     * @param totalLines  Total number of lines for consistent spacing.
+     */
+    public static void printPascalLine(int[] line, int lineNumber, int totalLines) {
+        // Calculate spaces before the line to center the triangle
+        int spaces = (totalLines - lineNumber);
+        for (int i = 0; i < spaces; i++) {
+            System.out.print("  "); // Three spaces for formatting
+        }
+
+        System.out.print(lineNumber + (lineNumber == 1 ? "st" : (lineNumber == 2 ? "nd" : (lineNumber == 3 ? "rd" : "th"))) + " ");
+
+        // Print the elements of the line with spacing
+        for (int value : line) {
+            System.out.printf("%4d", value); // Use printf for consistent spacing
+        }
+        System.out.println();
+    }
+}
