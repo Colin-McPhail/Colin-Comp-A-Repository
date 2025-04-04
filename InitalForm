@@ -1,0 +1,239 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.passwordapp;
+
+
+/**
+ *
+ * @author CMcPhail2026
+ */
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+
+/**
+ * Main class to launch the Password Generator GUI.
+ */
+public class InitialForm {
+
+    public static void main(String[] args) {
+        // Run the GUI creation in the Event Dispatch Thread for thread safety
+        SwingUtilities.invokeLater(() -> new PasswordGeneratorFrame());
+    }
+}
+
+/**
+ * Represents the main window (JFrame) for the Password Generator.
+ * Implements ActionListener to handle button clicks and ChangeListener for the slider.
+ */
+class PasswordGeneratorFrame extends JFrame implements ActionListener, ChangeListener {
+
+    // --- GUI Components ---
+    private Container contentPane;
+    private JLabel titleLabel;
+
+    // Length Selection
+    private JLabel lengthLabel;
+    private JSlider lengthSlider;
+    private JLabel lengthValueLabel; // Shows the current slider value
+
+    // Character Type Options
+    private JLabel optionsLabel;
+    private JCheckBox uppercaseCheckBox;
+    private JCheckBox lowercaseCheckBox;
+    private JCheckBox numbersCheckBox;
+    private JCheckBox symbolsCheckBox;
+
+    // Password Display
+    private JLabel generatedPasswordLabel;
+    private JTextField passwordDisplayField;
+
+    // Action Buttons
+    private JButton generateButton;
+    private JButton copyButton;
+
+    // Status/Feedback Label
+    private JLabel statusLabel;
+    // --- End GUI Components ---
+
+
+    /**
+     * Constructor: Sets up the JFrame and initializes all GUI components.
+     */
+    public PasswordGeneratorFrame() {
+        // --- Frame Setup ---
+        setTitle("Password Generator");
+        // Increased height to accommodate components
+        setBounds(300, 150, 450, 450);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Using null layout like the example, though Layout Managers are generally preferred
+        setResizable(false);
+        contentPane = getContentPane();
+        contentPane.setLayout(null);
+        // --- End Frame Setup ---
+
+
+        // --- Component Initialization & Placement ---
+
+        // Title
+        titleLabel = new JLabel("Password Generator");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setSize(300, 30);
+        titleLabel.setLocation(90, 20); // Centered horizontally approx.
+        contentPane.add(titleLabel);
+
+        // Password Length Label
+        lengthLabel = new JLabel("Password Length:");
+        lengthLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        lengthLabel.setSize(120, 20);
+        lengthLabel.setLocation(50, 80);
+        contentPane.add(lengthLabel);
+
+        // Password Length Slider
+        lengthSlider = new JSlider(JSlider.HORIZONTAL, 8, 64, 16); // Min 8, Max 64, Default 16
+        lengthSlider.setMajorTickSpacing(8);
+        lengthSlider.setMinorTickSpacing(1);
+        lengthSlider.setPaintTicks(true);
+        // lengthSlider.setPaintLabels(true); // Optional: shows numbers on slider
+        lengthSlider.setSize(200, 40); // Height increased for ticks
+        lengthSlider.setLocation(170, 70); // Adjusted Y for alignment
+        lengthSlider.addChangeListener(this); // Add listener
+        contentPane.add(lengthSlider);
+
+        // Password Length Value Display Label
+        lengthValueLabel = new JLabel(String.valueOf(lengthSlider.getValue())); // Initial value
+        lengthValueLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        lengthValueLabel.setSize(40, 20);
+        lengthValueLabel.setLocation(380, 80); // Positioned next to slider
+        contentPane.add(lengthValueLabel);
+
+
+        // Options Label
+        optionsLabel = new JLabel("Include Characters:");
+        optionsLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        optionsLabel.setSize(150, 20);
+        optionsLabel.setLocation(50, 130);
+        contentPane.add(optionsLabel);
+
+        // Uppercase Checkbox
+        uppercaseCheckBox = new JCheckBox("Uppercase (A-Z)");
+        uppercaseCheckBox.setFont(new Font("Arial", Font.PLAIN, 12));
+        uppercaseCheckBox.setSelected(true); // Default selected
+        uppercaseCheckBox.setSize(150, 20);
+        uppercaseCheckBox.setLocation(70, 160);
+        contentPane.add(uppercaseCheckBox);
+
+        // Lowercase Checkbox
+        lowercaseCheckBox = new JCheckBox("Lowercase (a-z)");
+        lowercaseCheckBox.setFont(new Font("Arial", Font.PLAIN, 12));
+        lowercaseCheckBox.setSelected(true); // Default selected
+        lowercaseCheckBox.setSize(150, 20);
+        lowercaseCheckBox.setLocation(70, 190);
+        contentPane.add(lowercaseCheckBox);
+
+        // Numbers Checkbox
+        numbersCheckBox = new JCheckBox("Numbers (0-9)");
+        numbersCheckBox.setFont(new Font("Arial", Font.PLAIN, 12));
+        numbersCheckBox.setSelected(true); // Default selected
+        numbersCheckBox.setSize(150, 20);
+        numbersCheckBox.setLocation(70, 220);
+        contentPane.add(numbersCheckBox);
+
+        // Symbols Checkbox
+        symbolsCheckBox = new JCheckBox("Symbols (!@#$%)");
+        symbolsCheckBox.setFont(new Font("Arial", Font.PLAIN, 12));
+        symbolsCheckBox.setSelected(false); // Default not selected
+        symbolsCheckBox.setSize(150, 20);
+        symbolsCheckBox.setLocation(70, 250);
+        contentPane.add(symbolsCheckBox);
+
+
+        // Generated Password Label
+        generatedPasswordLabel = new JLabel("Generated Password:");
+        generatedPasswordLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        generatedPasswordLabel.setSize(150, 20);
+        generatedPasswordLabel.setLocation(50, 300);
+        contentPane.add(generatedPasswordLabel);
+
+        // Password Display Field
+        passwordDisplayField = new JTextField();
+        passwordDisplayField.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        passwordDisplayField.setEditable(false); // Read-only
+        passwordDisplayField.setSize(340, 25); // Wider field
+        passwordDisplayField.setLocation(50, 325);
+        contentPane.add(passwordDisplayField);
+
+        // Generate Button
+        generateButton = new JButton("Generate");
+        generateButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        generateButton.setSize(100, 30);
+        generateButton.setLocation(100, 370);
+        generateButton.addActionListener(this); // Add listener
+        contentPane.add(generateButton);
+
+        // Copy Button
+        copyButton = new JButton("Copy");
+        copyButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        copyButton.setSize(100, 30);
+        copyButton.setLocation(250, 370);
+        copyButton.addActionListener(this); // Add listener
+        contentPane.add(copyButton);
+
+        // Status Label (Initially hidden or empty)
+        statusLabel = new JLabel(""); // Empty text initially
+        statusLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+        statusLabel.setSize(300, 20);
+        statusLabel.setLocation(50, 405); // Below buttons
+        statusLabel.setForeground(Color.GRAY);
+        contentPane.add(statusLabel);
+
+        // --- End Component Initialization ---
+
+        // Make the frame visible LAST, after all components are added
+        setVisible(true);
+    }
+
+    /**
+     * Handles button click events.
+     * @param e The ActionEvent object containing details about the event.
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == generateButton) {
+            // --- Placeholder for Generate Logic ---
+            // In a real app, you would:
+            // 1. Read the slider value (lengthSlider.getValue())
+            // 2. Check which checkboxes are selected (e.g., uppercaseCheckBox.isSelected())
+            // 3. Call a method to generate a password based on these options
+            // 4. Set the generated password in the text field (passwordDisplayField.setText(...))
+            passwordDisplayField.setText("Password generation logic goes here..."); // Placeholder
+            statusLabel.setText("Generate button clicked (logic not implemented).");
+            // --- End Placeholder ---
+
+        } else if (e.getSource() == copyButton) {
+            // --- Placeholder for Copy Logic ---
+            // In a real app, you would:
+            // 1. Get the text from the password field (passwordDisplayField.getText())
+            // 2. Use the system clipboard (java.awt.Toolkit and java.awt.datatransfer) to copy the text
+            statusLabel.setText("Copy button clicked (logic not implemented).");
+            // --- End Placeholder ---
+        }
+    }
+
+    /**
+     * Handles changes in the slider's state (value).
+     * @param e The ChangeEvent object.
+     */
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource() == lengthSlider) {
+            // Update the label next to the slider to show the current value
+            lengthValueLabel.setText(String.valueOf(lengthSlider.getValue()));
+            statusLabel.setText(""); // Clear status on slider change
+        }
+    }
+}
